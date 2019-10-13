@@ -1,0 +1,8 @@
+{
+  "name": "chatbox",
+  "version": "1.0.0",
+  "license": "ISC",
+  "peerDependencies": {
+    "react": "^16.10.2"
+  }
+}

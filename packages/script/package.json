@@ -1,0 +1,44 @@
+{
+  "name": "@whatsapp-widget/script",
+  "version": "1.0.0",
+  "description": "Javascript module template.",
+  "main": "index.js",
+  "module": "../app/static/module/index.js",
+  "private": true,
+  "scripts": {
+    "lint": "eslint src/ test/ *.js",
+    "flow-typed": "rm -rf ./flow-typed && flow-typed install",
+    "flow": "flow",
+    "karma": "cross-env NODE_ENV=test babel-node --plugins=transform-es2015-modules-commonjs ../../node_modules/karma/bin/karma start",
+    "babel": "babel src/ --out-dir ../app/static/module",
+    "webpack": "babel-node --plugins=transform-es2015-modules-commonjs ../../node_modules/.bin/webpack --progress",
+    "test": "npm run lint && npm run flow-typed && npm run flow && npm run karma",
+    "build": "npm run test && npm run babel && npm run webpack",
+    "clean": "rimraf dist coverage",
+    "reinstall": "rimraf flow-typed && rimraf node_modules && npm install && flow-typed install",
+    "debug": "cross-env NODE_ENV=debug"
+  },
+  "files": [
+    "src/"
+  ],
+  "browserslist": [
+    "IE >= 9",
+    "chrome >= 27",
+    "firefox >= 30",
+    "safari >= 5",
+    "opera >= 23"
+  ],
+  "devDependencies": {
+    "flow-bin": "^0.108.0",
+    "grumbler-scripts": "^3",
+    "mocha": "^6.2.0"
+  },
+  "dependencies": {
+    "belter": "^1.0.105",
+    "cross-domain-safe-weakmap": "^1.0.26",
+    "cross-domain-utils": "^2.0.28",
+    "jsx-pragmatic": "^2.0.3",
+    "zalgo-promise": "^1.0.44",
+    "zoid": "^9.0.34"
+  }
+}

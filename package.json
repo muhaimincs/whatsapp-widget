@@ -1,0 +1,38 @@
+{
+  "name": "whatsapp-widget",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "yarn --cwd packages/app dev",
+    "build": "yarn --cwd packages/app build",
+    "export": "yarn --cwd packages/app export",
+    "start": "yarn --cwd packages/app start",
+    "build-script": "yarn --cwd packages/script build",
+    "clean": "yarn --cwd packages/script clean"
+  },
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/muhaimincs/whatsapp-widget.git"
+  },
+  "keywords": [
+    "whatsapp",
+    "widget"
+  ],
+  "author": "Muhaimin CS",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/muhaimincs/whatsapp-widget/issues"
+  },
+  "homepage": "https://github.com/muhaimincs/whatsapp-widget#readme",
+  "workspaces": [
+    "packages/*"
+  ],
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "@babel/core": "^7",
+    "@babel/preset-env": "^7",
+    "babel-loader": "^8.0.2"
+  }
+}

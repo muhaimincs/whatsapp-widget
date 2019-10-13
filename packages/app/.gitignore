@@ -1,0 +1,17 @@
+# build output
+dist
+.next
+.sass-cache
+
+# dependencies
+node_modules
+
+# logs
+npm-debug.log
+
+.DS_Store
+.idea
+.vscode
+yarn-error.log
+yarn.lock
+package-lock.json
