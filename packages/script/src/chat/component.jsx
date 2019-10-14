@@ -12,7 +12,7 @@ export const Chat = create({
     return {
       mobileLocal: `http://${__LOCAL_MOBILE_URL__}:3000`,
       local: `http://localhost:3000`,
-      production: `https://whatsapp-widget-8m34qdmay.now.sh`
+      production: `https://whatsapp-widget.mcs.now.sh`
     }[props.env];
   },
 
@@ -55,7 +55,7 @@ export const Chat = create({
       required: false,
       default: ({ props }) => ({
         author: props.chatHeader.name,
-        message: "Hi there, <br />How can I help you?",
+        message: "Hi there, How can I help you?",
         timestamp: Date.now()
       })
     },

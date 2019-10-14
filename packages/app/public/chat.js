@@ -10305,7 +10305,7 @@ var Chat = create({
     return {
       mobileLocal: "http://" + undefined + ":3000",
       local: "http://localhost:3000",
-      production: "https://whatsapp-widget-8m34qdmay.now.sh"
+      production: "https://whatsapp-widget.mcs.now.sh"
     }[props.env];
   },
   attributes: {
@@ -10352,7 +10352,7 @@ var Chat = create({
         var props = _ref2.props;
         return {
           author: props.chatHeader.name,
-          message: "Hi there, <br />How can I help you?",
+          message: "Hi there, How can I help you?",
           timestamp: Date.now()
         };
       }
