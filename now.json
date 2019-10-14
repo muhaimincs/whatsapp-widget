@@ -1,4 +1,10 @@
 {
   "version": 2,
-  "public": true
+  "builds": [{ "src": "packages/store/next.config.js", "use": "@now/next" }],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/packages/store/$1"
+    }
+  ]
 }
