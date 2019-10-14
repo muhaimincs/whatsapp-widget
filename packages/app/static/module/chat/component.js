@@ -15,8 +15,8 @@ const Chat = (0, _index.create)({
     props
   }) => {
     return {
-      mobileLocal: `http://${__LOCAL_MOBILE_URL__}:4001`,
-      local: `http://localhost:4001`,
+      mobileLocal: `http://${__LOCAL_MOBILE_URL__}:3000`,
+      local: `http://localhost:3000`,
       production: `https://c.mcstech.dev`
     }[props.env];
   },
@@ -37,6 +37,7 @@ const Chat = (0, _index.create)({
     },
     phoneNumber: {
       type: "string",
+      required: false,
       default: () => "+6012345678"
     },
     chatHeader: {
@@ -51,14 +52,15 @@ const Chat = (0, _index.create)({
       })
     },
     welcomeMessage: {
-      type: "string",
+      type: "object",
       required: false,
-      default: () => "Hi there 👋. How can I help you?"
-    },
-    playAlertSound: {
-      type: "function",
-      required: false,
-      default: () => _utils.playAlertSound
+      default: ({
+        props
+      }) => ({
+        author: props.chatHeader.name,
+        message: "Hi there 👋 <br />How can I help you?",
+        timestamp: Date.now()
+      })
     },
     layout: {
       type: "object",

@@ -1,12 +1,12 @@
-import React from "react";
+import { forwardRef } from "react";
 import Header from "./header";
 import Footer from "./footer";
 import Conversation from "./conversation";
 
-function Chatbox() {
+const Chatbox = forwardRef((props, ref) => {
   return (
     <>
-      <div className="chatbox">
+      <div ref={ref} className="chatbox" {...props}>
         <Header />
         <Conversation />
         <Footer />
@@ -24,6 +24,6 @@ function Chatbox() {
       </style>
     </>
   );
-}
+});
 
 export default Chatbox;

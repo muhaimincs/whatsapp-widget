@@ -1,33 +1,34 @@
-/* @flow */
+"use strict";
 
-import { create } from "zoid/src/index";
+exports.__esModule = true;
+exports.Chat = void 0;
 
-import { containerTemplate } from "./template";
+var _index = require("zoid/src/index");
+
+var _template = require("./template");
+
 // import { playAlertSound } from "./utils";
-
-export const Chat = create({
+const Chat = (0, _index.create)({
   tag: "mcs-whatsapp",
-
-  url: ({ props }) => {
+  url: ({
+    props
+  }) => {
     return {
       mobileLocal: `http://${__LOCAL_MOBILE_URL__}:3000`,
       local: `http://localhost:3000`,
       production: `https://c.mcstech.dev`
     }[props.env];
   },
-
   attributes: {
     iframe: {
       scrolling: "no"
     }
   },
-
   autoResize: {
     width: true,
     height: true,
     element: ".mcs-chat"
   },
-
   props: {
     env: {
       type: "string",
@@ -45,15 +46,16 @@ export const Chat = create({
         chatHeader: {
           name: "Chloë",
           caption: "Typically replies within a day",
-          avatar:
-            "https://i.pinimg.com/originals/24/d0/75/24d0752430c3cec6d08b605b66c27315.jpg"
+          avatar: "https://i.pinimg.com/originals/24/d0/75/24d0752430c3cec6d08b605b66c27315.jpg"
         }
       })
     },
     welcomeMessage: {
       type: "object",
       required: false,
-      default: ({ props }) => ({
+      default: ({
+        props
+      }) => ({
         author: props.chatHeader.name,
         message: "Hi there, <br />How can I help you?",
         timestamp: Date.now()
@@ -62,11 +64,15 @@ export const Chat = create({
     layout: {
       type: "object",
       required: false,
-      default: () => ({ layout: { web: "MB2", mobile: "discreet" } })
+      default: () => ({
+        layout: {
+          web: "MB2",
+          mobile: "discreet"
+        }
+      })
     }
   },
-
   defaultContext: __DEFAULT_CONTEXT__,
-
-  containerTemplate
+  containerTemplate: _template.containerTemplate
 });
+exports.Chat = Chat;

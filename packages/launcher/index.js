@@ -1,10 +1,10 @@
-import React from "react";
+import { forwardRef } from "react";
 import Whatsapp from "./icons/whatsapp";
 
-function Launcher() {
+const Launcher = forwardRef((props, ref) => {
   return (
     <>
-      <div>
+      <div ref={ref} {...props}>
         <Whatsapp />
       </div>
       <style jsx>
@@ -26,6 +26,6 @@ function Launcher() {
       </style>
     </>
   );
-}
+});
 
 export default Launcher;

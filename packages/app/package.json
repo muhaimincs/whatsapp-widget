@@ -10,7 +10,8 @@
     "next": "latest",
     "next-transpile-modules": "^2.0.0",
     "react": "^16.10.2",
-    "react-dom": "^16.10.2"
+    "react-dom": "^16.10.2",
+    "react-use": "^12.4.0"
   },
   "license": "ISC"
 }

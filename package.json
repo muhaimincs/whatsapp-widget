@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "demo": "npx serve ./packages/demo & yarn dev",
     "dev": "yarn --cwd packages/app dev",
     "build": "yarn --cwd packages/app build",
     "export": "yarn --cwd packages/app export",

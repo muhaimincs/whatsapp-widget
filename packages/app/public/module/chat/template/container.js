@@ -1,9 +1,13 @@
-/* @flow */
+"use strict";
+
+exports.__esModule = true;
+exports.containerTemplate = containerTemplate;
+
+var _index = require("belter/src/index");
+
+var _index2 = require("zoid/src/index");
+
 /** @jsx node */
-
-import { destroyElement, toCSS, toNum } from "belter/src/index";
-import { EVENT, type RenderOptionsType } from "zoid/src/index";
-
 const CLASS = {
   OUTLET: "outlet",
   VISIBLE: "visible",
@@ -12,14 +16,14 @@ const CLASS = {
   PRERENDER_FRAME: "prerender-frame"
 };
 
-export function containerTemplate<P>({
+function containerTemplate({
   uid,
   frame,
   props,
   prerenderFrame,
   doc,
   event
-}: RenderOptionsType<P>): ?HTMLElement {
+}) {
   if (!frame || !prerenderFrame) {
     return;
   }
@@ -28,12 +32,12 @@ export function containerTemplate<P>({
   div.setAttribute("id", uid);
   div.classList.add("mcs-chat");
   const style = doc.createElement("style");
+
   if (props.cspNonce) {
     style.setAttribute("nonce", props.cspNonce);
   }
 
-  style.appendChild(
-    doc.createTextNode(`
+  style.appendChild(doc.createTextNode(`
       #${uid} {
         z-index: 2147483000;
         position: fixed;
@@ -122,45 +126,38 @@ export function containerTemplate<P>({
           height: auto;
         }
       }
-      `)
-  );
-
+      `));
   div.appendChild(frame);
   div.appendChild(prerenderFrame);
   div.appendChild(style);
-
   prerenderFrame.classList.add(CLASS.VISIBLE);
   frame.classList.add(CLASS.INVISIBLE);
-
-  event.on(EVENT.RENDERED, () => {
+  event.on(_index2.EVENT.RENDERED, () => {
     prerenderFrame.classList.remove(CLASS.VISIBLE);
     prerenderFrame.classList.add(CLASS.INVISIBLE);
-
     frame.classList.remove(CLASS.INVISIBLE);
     frame.classList.add(CLASS.VISIBLE);
-
     setTimeout(() => {
-      destroyElement(prerenderFrame);
+      (0, _index.destroyElement)(prerenderFrame);
     }, 1);
   });
-
-  event.on(EVENT.RESIZE, ({ height: newHeight, width: newWidth }) => {
+  event.on(_index2.EVENT.RESIZE, ({
+    height: newHeight,
+    width: newWidth
+  }) => {
     if (newHeight) {
-      div.style.height = toCSS(newHeight);
+      div.style.height = (0, _index.toCSS)(newHeight);
     }
 
     if (newWidth) {
-      div.style.width = toCSS(newWidth);
-    }
+      div.style.width = (0, _index.toCSS)(newWidth);
+    } // to lock parent body scroll when webchat is open
 
-    // to lock parent body scroll when webchat is open
-    if (
-      navigator.userAgent.match(
-        /Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i
-      )
-    ) {
-      const numInPixel = toCSS(newWidth);
-      const num = toNum(numInPixel);
+
+    if (navigator.userAgent.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i)) {
+      const numInPixel = (0, _index.toCSS)(newWidth);
+      const num = (0, _index.toNum)(numInPixel);
+
       if (num > 300) {
         doc.body.style.overflow = "hidden";
       } else {
@@ -168,6 +165,5 @@ export function containerTemplate<P>({
       }
     }
   });
-
   return div;
 }
