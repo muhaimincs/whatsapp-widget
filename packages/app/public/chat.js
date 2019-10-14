@@ -10305,7 +10305,7 @@ var Chat = create({
     return {
       mobileLocal: "http://" + undefined + ":3000",
       local: "http://localhost:3000",
-      production: "https://c.mcstech.dev"
+      production: "https://whatsapp-widget-8m34qdmay.now.sh"
     }[props.env];
   },
   attributes: {

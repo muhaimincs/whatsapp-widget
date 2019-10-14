@@ -12,7 +12,7 @@ export const Chat = create({
     return {
       mobileLocal: `http://${__LOCAL_MOBILE_URL__}:3000`,
       local: `http://localhost:3000`,
-      production: `https://c.mcstech.dev`
+      production: `https://whatsapp-widget-8m34qdmay.now.sh`
     }[props.env];
   },
 

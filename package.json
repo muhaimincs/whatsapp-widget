@@ -6,7 +6,7 @@
   "scripts": {
     "demo": "npx serve ./packages/demo & yarn dev",
     "dev": "yarn --cwd packages/app dev",
-    "build": "yarn --cwd packages/app build",
+    "build": "yarn --cwd packages/app build --output public",
     "export": "yarn --cwd packages/app export",
     "start": "yarn --cwd packages/app start",
     "build-script": "yarn --cwd packages/script build",
