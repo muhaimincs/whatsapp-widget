@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "next",
-    "build": "NODE_OPTIONS=\"--inspect\" next build",
+    "build": "next build",
     "export": "next export",
     "start": "next start"
   },

@@ -66,7 +66,7 @@ function Conversation() {
             position: relative;
           }
           .conversation:before {
-            background-image: url(/static/img/whatsapp.webp);
+            background-image: url(/img/whatsapp.webp);
             display: block;
             position: absolute;
             content: "";
