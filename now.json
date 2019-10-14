@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "builds": [{ "src": "packages/store/next.config.js", "use": "@now/next" }],
+  "builds": [{ "src": "packages/app/next.config.js", "use": "@now/next" }],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/packages/store/$1"
+      "dest": "/packages/app/$1"
     }
   ]
 }
