@@ -1,4 +1,5 @@
 import { createRef, useEffect, useState } from "react";
+import Head from "next/head";
 import Launcher from "launcher";
 import Chatbox from "chatbox";
 
@@ -27,6 +28,9 @@ const Index = () => {
 
   return (
     <div>
+      <Head>
+        <script src="./chat.min.js" />
+      </Head>
       {!launch ? (
         <Launcher ref={launcher} onClick={toggleChatbox} />
       ) : (
