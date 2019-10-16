@@ -10326,7 +10326,7 @@ function playAlertSound() {
 function formatAMPM(date) {
   var hours = date.getHours();
   var minutes = date.getMinutes();
-  var ampm = hours >= 12 ? 'pm' : 'am';
+  var ampm = hours >= 12 ? 'PM' : 'AM';
   hours %= 12;
   hours = hours ? hours : 12; // the hour '0' should be '12'
 
