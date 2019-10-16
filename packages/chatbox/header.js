@@ -1,6 +1,18 @@
-import React from "react";
+import { useEffect, useState } from "react";
 
 function Header() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    if (window) {
+      if (window.xprops) {
+        setUser(window.xprops.chatHeader);
+      }
+    }
+  }, []);
+
+  if (!user) return null;
+
   return (
     <>
       <div className="header">
@@ -10,8 +22,8 @@ function Header() {
           </div>
         </div>
         <div className="header-info">
-          <div className="header-info-name">Joe</div>
-          <div className="header-info-caption">Hey how can I help</div>
+          <div className="header-info-name">{user.name}</div>
+          <div className="header-info-caption">{user.caption}</div>
         </div>
       </div>
       <style jsx>
@@ -68,7 +80,7 @@ function Header() {
             overflow: hidden;
           }
           .image-user {
-            background-image: url(https://pbs.twimg.com/profile_images/951055655594545153/F6eybr-i.jpg);
+            background-image: url(${user.avatar});
             min-width: 100%;
             height: 100%;
             flex-shrink: 0;

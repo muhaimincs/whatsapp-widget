@@ -7,7 +7,8 @@ var _index = require("zoid/src/index");
 
 var _template = require("./template");
 
-// import { playAlertSound } from "./utils";
+var _utils = require("./utils");
+
 const Chat = (0, _index.create)({
   tag: "mcs-whatsapp",
   url: ({
@@ -43,11 +44,9 @@ const Chat = (0, _index.create)({
       type: "object",
       required: false,
       default: () => ({
-        chatHeader: {
-          name: "Chloë",
-          caption: "Typically replies within a day",
-          avatar: "https://i.pinimg.com/originals/24/d0/75/24d0752430c3cec6d08b605b66c27315.jpg"
-        }
+        name: "Chloë",
+        caption: "Typically replies within a day",
+        avatar: "https://www.telegraph.co.uk/content/dam/films/2018/09/07/TELEMMGLPICT000173323037_trans_NvBQzQNjv4BqKfPPARnOhb10Jv19E_BU963M8VqvhzgXBFeugr-hINU.jpeg?imwidth=1400"
       })
     },
     welcomeMessage: {
@@ -57,9 +56,14 @@ const Chat = (0, _index.create)({
         props
       }) => ({
         author: props.chatHeader.name,
-        message: "Hi there, How can I help you?",
-        timestamp: Date.now()
+        message: props.message,
+        timestamp: (0, _utils.formatAMPM)(new Date())
       })
+    },
+    message: {
+      type: "string",
+      required: false,
+      default: () => "Hey there, How can I help you?"
     },
     layout: {
       type: "object",
