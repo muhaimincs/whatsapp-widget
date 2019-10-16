@@ -14,11 +14,10 @@ const Index = () => {
 
   useEffect(() => {
     if (launcher.current) {
-      // console.log(launcher.current.clientHeight);
       if (window.xprops) {
         window.xprops.resize({
-          width: launcher.current.clientWidth,
-          height: launcher.current.clientHeight
+          width: !launch ? launcher.current.clientWidth : 380,
+          height: !launch ? launcher.current.clientHeight : 297
         });
       } else {
         console.error("MISSING WINDOW.XPROPS");
@@ -27,7 +26,7 @@ const Index = () => {
   }, [launcher.current]);
 
   return (
-    <div>
+    <>
       <Head>
         <script src="./chat.min.js" />
       </Head>
@@ -50,7 +49,7 @@ const Index = () => {
           }
         `}
       </style>
-    </div>
+    </>
   );
 };
 

@@ -42,9 +42,8 @@ function containerTemplate({
         z-index: 2147483000;
         position: fixed;
         overflow: hidden;
-        min-width: 68px;
-        max-width: 400px;
-        min-height: 68px;
+        min-width: 100px;
+        min-height: 100px;
         max-height: calc(100% - 40px);
         right: 0;
         bottom: 0;

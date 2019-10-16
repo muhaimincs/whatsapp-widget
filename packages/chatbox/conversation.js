@@ -15,27 +15,36 @@ const reducer = (state, action) => {
 function Conversation() {
   const [seconds, setSeconds] = useState(3000);
   const [messages, dispatch] = useReducer(reducer, initialState);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    if (window) {
+      if (window.xprops) {
+        setUser(window.xprops.chatHeader);
+      }
+    }
+  }, []);
 
   useInterval(() => {
-    dispatch({
-      type: "load",
-      data: {
-        author: "Chloe",
-        message: "Hi there 👋 <br />How can I help you?",
-        timestamp: Date.now()
+    if (window) {
+      if (window.xprops) {
+        dispatch({
+          type: "load",
+          data: window.xprops.welcomeMessage
+        });
+        setSeconds(null);
       }
-    });
-    setSeconds(null);
+    }
   }, seconds);
 
   return (
     <>
       <div className="conversation">
-        {seconds && (
+        {seconds && user && (
           <div className="message">
             <div className="tail"></div>
             <div className="message-content">
-              <div className="author">Chloe</div>
+              <div className="author">{user.name}</div>
               <div className="text-block">
                 <TypingIndicator />
               </div>

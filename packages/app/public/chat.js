@@ -10251,7 +10251,7 @@ function containerTemplate(_ref) {
     style.setAttribute("nonce", props.cspNonce);
   }
 
-  style.appendChild(doc.createTextNode("\n      #" + uid + " {\n        z-index: 2147483000;\n        position: fixed;\n        overflow: hidden;\n        min-width: 68px;\n        max-width: 400px;\n        min-height: 68px;\n        max-height: calc(100% - 40px);\n        right: 0;\n        bottom: 0;\n        -webkit-transition:350ms cubic-bezier(.25,.1,0,1);\n        transition:350ms cubic-bezier(.25,.1,0,1);\n      }\n      #" + uid + " > iframe {\n        display: inline-block;\n        position: absolute;\n        width: 100%;\n        height: 100%;\n        top: 0;\n        left: 0;\n        transition: opacity .2s ease-in-out;\n        margin: 0;\n      }\n      #" + uid + " > iframe:not(:first-of-type) {\n        width: 100%;\n        position: absolute;\n        bottom: 0;\n        overflow: hidden;\n        display: flex;\n        pointer-events: none;\n      }\n      #" + uid + " > iframe." + container_CLASS.INVISIBLE + " {\n        opacity: 0;\n      }\n      #" + uid + " > iframe." + container_CLASS.VISIBLE + " {\n        opacity: 1;\n      }\n      @media (min-device-width: 320px) and (max-device-width: 480px) {\n        #" + uid + " {\n          width: 100px;\n          height: 100px;\n          min-width: 100px;\n          max-width: 100%;\n          min-height: 100px;\n          max-height: 100%;\n          border-radius: 0;\n        }\n        .mcs-chat > iframe {\n          bottom: 0;\n          right: 0;\n          width: auto;\n          height: auto;\n        }\n      }\n      @media (min-device-width: 768px) and (max-device-width: 1024px) {\n        #" + uid + " {\n          width: 100px;\n          height: 100px;\n          min-width: 100px;\n          max-width: 100%;\n          min-height: 100px;\n          max-height: 100%;\n          border-radius: 0;\n        }\n        .mcs-chat > iframe {\n          bottom: 0;\n          right: 0;\n          width: auto;\n          height: auto;\n        }\n      }\n      @media (min-width: 768px) and (max-width: 1024px) {\n        #" + uid + " {\n          width: 100px;\n          height: 100px;\n          min-width: 100px;\n          max-width: 100%;\n          min-height: 100px;\n          max-height: 100%;\n          border-radius: 0;\n        }\n        .mcs-chat > iframe {\n          bottom: 0;\n          right: 0;\n          width: auto;\n          height: auto;\n        }\n      }\n      "));
+  style.appendChild(doc.createTextNode("\n      #" + uid + " {\n        z-index: 2147483000;\n        position: fixed;\n        overflow: hidden;\n        min-width: 100px;\n        min-height: 100px;\n        max-height: calc(100% - 40px);\n        right: 0;\n        bottom: 0;\n        -webkit-transition:350ms cubic-bezier(.25,.1,0,1);\n        transition:350ms cubic-bezier(.25,.1,0,1);\n      }\n      #" + uid + " > iframe {\n        display: inline-block;\n        position: absolute;\n        width: 100%;\n        height: 100%;\n        top: 0;\n        left: 0;\n        transition: opacity .2s ease-in-out;\n        margin: 0;\n      }\n      #" + uid + " > iframe:not(:first-of-type) {\n        width: 100%;\n        position: absolute;\n        bottom: 0;\n        overflow: hidden;\n        display: flex;\n        pointer-events: none;\n      }\n      #" + uid + " > iframe." + container_CLASS.INVISIBLE + " {\n        opacity: 0;\n      }\n      #" + uid + " > iframe." + container_CLASS.VISIBLE + " {\n        opacity: 1;\n      }\n      @media (min-device-width: 320px) and (max-device-width: 480px) {\n        #" + uid + " {\n          width: 100px;\n          height: 100px;\n          min-width: 100px;\n          max-width: 100%;\n          min-height: 100px;\n          max-height: 100%;\n          border-radius: 0;\n        }\n        .mcs-chat > iframe {\n          bottom: 0;\n          right: 0;\n          width: auto;\n          height: auto;\n        }\n      }\n      @media (min-device-width: 768px) and (max-device-width: 1024px) {\n        #" + uid + " {\n          width: 100px;\n          height: 100px;\n          min-width: 100px;\n          max-width: 100%;\n          min-height: 100px;\n          max-height: 100%;\n          border-radius: 0;\n        }\n        .mcs-chat > iframe {\n          bottom: 0;\n          right: 0;\n          width: auto;\n          height: auto;\n        }\n      }\n      @media (min-width: 768px) and (max-width: 1024px) {\n        #" + uid + " {\n          width: 100px;\n          height: 100px;\n          min-width: 100px;\n          max-width: 100%;\n          min-height: 100px;\n          max-height: 100%;\n          border-radius: 0;\n        }\n        .mcs-chat > iframe {\n          bottom: 0;\n          right: 0;\n          width: auto;\n          height: auto;\n        }\n      }\n      "));
   div.appendChild(frame);
   div.appendChild(prerenderFrame);
   div.appendChild(style);
@@ -10294,9 +10294,49 @@ function containerTemplate(_ref) {
 }
 // CONCATENATED MODULE: ./src/chat/template/index.jsx
 
+// CONCATENATED MODULE: ./src/chat/utils.js
+var nothing = new Audio('http://touchbasicapp.com/nothing.wav');
+var music = new Audio('https://api1.fastagent.io/static/sound/definite.mp3');
+
+function tapped() {
+  music.play();
+  music.pause();
+  music.currentTime = 0;
+}
+
+document.addEventListener('touchstart', tapped, false);
+document.addEventListener('click', tapped, false);
+nothing.play().catch(function (err) {
+  // eslint-disable-next-line no-console
+  console.info("[MCS AUDIO]: " + err);
+});
+function playAlertSound() {
+  try {
+    return music.play().then(function () {
+      document.removeEventListener('touchstart', tapped, false);
+      document.removeEventListener('click', tapped, false);
+      return true;
+    });
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.info("[MCS AUDIO]: " + err);
+    return false;
+  }
+}
+function formatAMPM(date) {
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  var ampm = hours >= 12 ? 'pm' : 'am';
+  hours %= 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+
+  minutes = minutes < 10 ? "0 " + minutes : minutes;
+  var strTime = hours + ":" + minutes + " " + ampm;
+  return strTime;
+}
 // CONCATENATED MODULE: ./src/chat/component.jsx
 
- // import { playAlertSound } from "./utils";
+
 
 var Chat = create({
   tag: "mcs-whatsapp",
@@ -10337,11 +10377,9 @@ var Chat = create({
       required: false,
       default: function _default() {
         return {
-          chatHeader: {
-            name: "Chloë",
-            caption: "Typically replies within a day",
-            avatar: "https://i.pinimg.com/originals/24/d0/75/24d0752430c3cec6d08b605b66c27315.jpg"
-          }
+          name: "Chloë",
+          caption: "Typically replies within a day",
+          avatar: "https://www.telegraph.co.uk/content/dam/films/2018/09/07/TELEMMGLPICT000173323037_trans_NvBQzQNjv4BqKfPPARnOhb10Jv19E_BU963M8VqvhzgXBFeugr-hINU.jpeg?imwidth=1400"
         };
       }
     },
@@ -10352,9 +10390,16 @@ var Chat = create({
         var props = _ref2.props;
         return {
           author: props.chatHeader.name,
-          message: "Hi there, How can I help you?",
-          timestamp: Date.now()
+          message: props.message,
+          timestamp: formatAMPM(new Date())
         };
+      }
+    },
+    message: {
+      type: "string",
+      required: false,
+      default: function _default() {
+        return "Hey there, How can I help you?";
       }
     },
     layout: {
